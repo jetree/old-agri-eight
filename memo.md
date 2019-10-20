@@ -6,3 +6,7 @@ npm install
 package.jsonの
 'cross.env' -> 'node node_modules/cross-env/dist/bin/cross-env.js'
 書き換え
+
+vagrant側（ゲストOSでなく）mac側(ホストOS)で
+npm run watch
+->自動リロードroutingの変更では変わらず、viewやcssの変更に対応

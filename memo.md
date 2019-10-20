@@ -10,3 +10,9 @@ package.jsonの
 vagrant側（ゲストOSでなく）mac側(ホストOS)で
 npm run watch
 ->自動リロードroutingの変更では変わらず、viewやcssの変更に対応
+
+ゲスト側でlaravel/uiをインストール
+composer require laravel/ui --dev
+
+Vueの初期化
+php artisan ui vue

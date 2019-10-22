@@ -1,12 +1,14 @@
 <template>
   <div class="conteiner">
     <header>
-      <h1>Hello Index</h1>
+      <Header></Header>
     </header>
     <main>
       <example-component></example-component>
     </main>
-    <Footer />
+    <footer>
+
+    </footer>
   </div>
 </template>
 

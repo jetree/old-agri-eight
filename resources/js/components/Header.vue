@@ -10,9 +10,10 @@
 <script>
 </script>
 
-<style>
+<style scoped>
   a{
     text-decoration: none;
+    color: #333;
   }
 
   a:visited{

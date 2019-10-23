@@ -4,7 +4,7 @@
       <a href="/">home</a>
     </div>
     <div class="nav-item">
-      <a href="/">menu</a>
+      <a href="/menu">menu</a>
     </div>
     <div class="nav-item">
       <a href="/">setting</a>
@@ -15,18 +15,20 @@
 <script>
 </script>
 
-<style>
+<style scoped>
   #nav{
     display: flex;
     justify-content: space-around;
     margin-bottom: 20px;
+    background-color: #222;
   }
 
   a{
     text-decoration: none;
+    color: #eee;
   }
 
   a:visited{
-    color: #333;
+    color: #eee;
   }
 </style>

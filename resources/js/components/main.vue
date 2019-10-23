@@ -3,6 +3,9 @@
     <header>
       <Header></Header>
     </header>
+    <nav>
+      <Navbar></Navbar>
+    </nav>
     <main>
       <example-component></example-component>
     </main>

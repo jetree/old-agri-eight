@@ -16,3 +16,6 @@ composer require laravel/ui --dev
 
 Vueの初期化
 php artisan ui vue
+
+migrate のエラー発生
+.env のDB接続のusernameとpassが間違っていた

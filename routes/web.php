@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', 'ConditionsController@index');
+route::get('/menu',function(){
     return view('welcome');
-    // return 'welcome';
 });

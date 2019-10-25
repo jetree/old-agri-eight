@@ -15,6 +15,8 @@ class CreateConditionsTable extends Migration
     {
         Schema::create('conditions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->float('temp');
+            $table->float('water_temp');
             $table->timestamps();
         });
     }

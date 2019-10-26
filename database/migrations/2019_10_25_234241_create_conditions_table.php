@@ -15,9 +15,15 @@ class CreateConditionsTable extends Migration
     {
         Schema::create('conditions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('machine_id');
             $table->float('temp');
             $table->float('water_temp');
             $table->timestamps();
+
+            $table
+                ->foreign('machine_id')
+                ->references('id')
+                ->on('machines');
         });
     }
 

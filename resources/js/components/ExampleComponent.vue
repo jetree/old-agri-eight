@@ -13,7 +13,7 @@
                     <div class="card-header">API TEST</div>
 
                     <div class="card-body">
-                        {{ $data }}
+                        {{ array }}
                     </div>
                 </div>
             </div>
@@ -23,12 +23,16 @@
 
 <script>
     export default {
-        data: function(){
-            return $data
-        },
         mounted() {
-            $data = axios.get('/api/test')
-            console.log($data)
+            axios.get('/api/test')
+                .then(response =>{
+                    this.array = response.data
+                });
+        },
+        data:function(){
+            return{
+                array:[]
+            }
         }
     }
 </script>

@@ -13,7 +13,13 @@
                     <div class="card-header">API TEST</div>
 
                     <div class="card-body">
-                        {{ array }}
+                        <ul>
+                            <li v-for="(condition,key) in conditions">
+                                {{condition.temp}}
+                                {{condition.water_temp}}
+                            </li>
+                        </ul>
+                        {{ conditions }}
                     </div>
                 </div>
             </div>
@@ -26,12 +32,12 @@
         mounted() {
             axios.get('/api/test')
                 .then(response =>{
-                    this.array = response.data
+                    this.conditions = response.data
                 });
         },
         data:function(){
             return{
-                array:[]
+                conditions:[]
             }
         }
     }

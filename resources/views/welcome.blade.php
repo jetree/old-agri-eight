@@ -17,7 +17,20 @@
     </head>
     <body>
       <div id="app">
-        <main-component></main-component> 
+        <div class="conteiner">
+          <header>
+            <header-component></header-component>
+          </header>
+          <nav>
+            <navbar-component></navbar-component>
+          </nav>
+          <main>
+            <example-component></example-component>
+          </main>
+          <footer>
+
+          </footer>
+        </div>
       </div>
       <script src="{{ mix('js/app.js') }}"></script>
     </body>

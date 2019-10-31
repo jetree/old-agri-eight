@@ -1,9 +1,11 @@
 <template>
   <div>
     <div id="logo"></div>
-    <a href="/">
-      <h1>title</h1>
-    </a>
+    <h1>
+      <a href="/">
+        titie
+      </a>
+    </h1>
   </div>
 </template>
 

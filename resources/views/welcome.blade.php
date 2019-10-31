@@ -11,6 +11,7 @@
 
         <!-- Styles -->
         <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="css/styles.css">
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
         

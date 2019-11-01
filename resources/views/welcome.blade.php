@@ -26,7 +26,7 @@
             <navbar-component></navbar-component>
           </nav>
           <main>
-            <example-component></example-component>
+            <temp-graph-component></temp-graph-component>
           </main>
           <footer>
 

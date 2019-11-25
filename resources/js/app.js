@@ -24,6 +24,7 @@ Vue.component('main-component', require('./components/main.vue').default);
 Vue.component('header-component', require('./components/Header.vue').default);
 Vue.component('navbar-component', require('./components/Navbar.vue').default);
 Vue.component('temp-graph-component', require('./components/TempGraphComponent.vue').default);
+Vue.component('chart-component', require('./components/chart.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -1,20 +1,35 @@
 <script>
-import { Line } from 'vue-chartjs'
+import { Line, mixins } from 'vue-chartjs'
+const { reactiveProp } = mixins
 
 export default {
   extends: Line,
-  props: ['chartdata', 'options'],
+  mixins: [reactiveProp],
+  props: ['options'],
   mounted() {
-    console.log(this.chartdata)
-    this.renderChart(this.chartdata, this.options)
+    console.log(this.chartData)
+    this.renderChart(this.chartData, this.options)
   },
-  watch: {
-  chartData () {
-    this.$data._chart.update()
-  }
+//   watch: {
+//     chartData:function() {
+//       console.log(this.chartData)
+//       this.$data._chart.update()
+//     }
+// }
 }
+// import { Line, mixins } from 'vue-chartjs'
+// const { reactiveProp } = mixins
 
-}
+// export default {
+//   extends: Line,
+//   mixins: [reactiveProp],
+//   props: ['options'],
+//   mounted () {
+//     // this.chartData is created in the mixin.
+//     // If you want to pass options please create a local options object
+//     this.renderChart(this.chartData, this.options)
+//   }
+// }
 </script>
 
 <style>

@@ -3,14 +3,13 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card mb-3">
-                    <div class="card-header">温度</div>
+                    <div class="card-header">温度
+                        <button @click=change class="btn btn-primary">更新</button>
+                    </div>
 
                     <div class="card-body">
-                            <!-- {{chartdata}} -->
-                        <chart-component 
-                            v-if="loaded" 
-                            :chartdata="chartdata">
-                        </chart-component>
+                        <line-chart v-if="loaded" :chart-data="datacollection"></line-chart>
+                        <button @click="fillData()">Randomize</button>
                     </div>
                 </div>
             </div>
@@ -19,16 +18,25 @@
 </template>
 
 <script>
+    import LineChart from './LineChart.js'
     export default {
-        async mounted() {
+        components: {
+            LineChart
+        },
+        data () {
+            return {
+                loaded:false,
+                datacollection: null
+            }
+        },
+        mounted () {
+            this.fillData()
             this.getChartData()
         },
-        data:function(){
-            return{
-                loaded:false,
-                chartdata:{
-                    type:'line',
-                    labels: ['1/1','2/1','3/1'],
+        methods:{
+            fillData(){
+                this.datacollection = {
+                    labels: [],
                     datasets: [{
                         data: [],
                         backgroundColor: 'none',
@@ -36,15 +44,12 @@
                         borderWidth: 1,
                         fill: false,
                     }],
-                },
-            }
-        },
-        methods:{
+                }
+             },
             getChartData() {
                 let self = this
                 axios.get('/api/test')
                     .then(response =>{
-                        console.log(response.data)
                         let $data = response.data
                         let temp_data = $data.map(function(value){
                             return value.temp
@@ -52,10 +57,22 @@
                         let date_data = $data.map(function(value){
                             return value.created_at
                         })
-                        self.chartdata.datasets[0].data = temp_data
-                        self.chartdata.labels= date_data
-                        this.loaded = true
+                        self.datacollection.datasets[0].data = temp_data
+                        self.datacollection.labels= date_data
+                        self.loaded = true
                 });
+            },
+            change(){
+                this.datacollection = {
+                    labels: [1,1,4,3,6,3,],
+                    datasets: [{
+                        data: [4,5,3,2,3,6],
+                        backgroundColor: 'none',
+                        borderColor: 'red',
+                        borderWidth: 1,
+                        fill: false,
+                    }],
+                }
             }
         }
     }

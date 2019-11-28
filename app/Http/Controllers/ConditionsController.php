@@ -8,7 +8,8 @@ use App\Condition;
 class ConditionsController extends Controller
 {
     public function index(){
-        $condition = Condition::all();
-        return $condition->toArray();
+        // 最新データ３０件を取得
+        $conditions = Condition::latest()->limit(30)->get();
+        return $conditions->toArray();
     }
 }

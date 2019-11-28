@@ -51,6 +51,7 @@
                 axios.get('/api/test')
                     .then(response =>{
                         let $data = response.data
+                        $data = $data.reverse()
                         let temp_data = $data.map(function(value){
                             return value.temp
                         })

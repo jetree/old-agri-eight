@@ -1,15 +1,15 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10">
-                <div class="card mb-3">
+            <div class="col">
+                <div class="card">
                     <div class="card-header">温度
                         <button @click=change class="btn btn-primary">更新</button>
+                        <button @click=getChartData class="btn btn-primary">取得</button>
                     </div>
 
                     <div class="card-body">
-                        <line-chart v-if="loaded" :chart-data="datacollection"></line-chart>
-                        <button @click="fillData()">Randomize</button>
+                        <line-chart v-if="loaded" :chart-data="datacollection" :options=options></line-chart>
                     </div>
                 </div>
             </div>
@@ -26,7 +26,18 @@
         data () {
             return {
                 loaded:false,
-                datacollection: null
+                datacollection: null,
+                options: {
+                    scales: {
+                        xAxes: [{
+                            type: 'time',
+                            time: {
+                                unit: 'day'
+                            }
+                        }]
+                    },
+                    responsive:true
+                }
             }
         },
         mounted () {
@@ -38,19 +49,55 @@
                 this.datacollection = {
                     labels: [],
                     datasets: [{
+                        label:'温度',
                         data: [],
                         backgroundColor: 'none',
                         borderColor: 'red',
                         borderWidth: 1,
                         fill: false,
+                    },
+                    {
+                        label:'水温',
+                        data: [],
+                        backgroundColor: 'none',
+                        borderColor: 'blue',
+                        borderWidth: 1,
+                        fill: false,
                     }],
+
                 }
              },
+             
             getChartData() {
+                this.loaded = false
                 let self = this
                 axios.get('/api/test')
                     .then(response =>{
                         let $data = response.data
+                        console.log($data)
+                        $data = $data.reverse()
+                        let temp_data = $data.map(function(value){
+                            return value.temp
+                        })
+                        let water_temp_data = $data.map(function(value){
+                            return value.water_temp
+                        })
+                        let date_data = $data.map(function(value){
+                            return value.created_at
+                        })
+                        self.datacollection.datasets[0].data = temp_data
+                        self.datacollection.datasets[1].data = water_temp_data
+                        self.datacollection.labels= date_data
+                        self.loaded = true
+                });
+            },
+            change(){
+                this.loaded = false
+                let self = this
+                axios.get('/api/test/50')
+                    .then(response =>{
+                        let $data = response.data
+                        console.log($data)
                         $data = $data.reverse()
                         let temp_data = $data.map(function(value){
                             return value.temp
@@ -61,20 +108,12 @@
                         self.datacollection.datasets[0].data = temp_data
                         self.datacollection.labels= date_data
                         self.loaded = true
-                });
-            },
-            change(){
-                this.datacollection = {
-                    labels: [1,1,4,3,6,3,],
-                    datasets: [{
-                        data: [4,5,3,2,3,6],
-                        backgroundColor: 'none',
-                        borderColor: 'red',
-                        borderWidth: 1,
-                        fill: false,
-                    }],
-                }
+                })
             }
         }
     }
 </script>
+
+<style>
+    
+</style>

@@ -17,3 +17,4 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 Route::get('/test', 'ConditionsController@index');
+Route::get('/test/{int}', 'ConditionsController@show');

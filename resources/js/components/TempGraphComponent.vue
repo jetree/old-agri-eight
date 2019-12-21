@@ -8,8 +8,28 @@
                         <button @click=getChartData class="btn btn-primary">取得</button>
                     </div>
 
-                    <div class="card-body">
-                        <line-chart v-if="loaded" :chart-data="datacollection" :options=options></line-chart>
+                    <div>
+                    <!-- <div class="card-body chart"> -->
+                        <line-chart v-if="loaded" 
+                        :chart-data="datacollection" 
+                        :options=options
+                        :height="400"
+                        />
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">温度
+                        <button @click=change class="btn btn-primary">更新</button>
+                        <button @click=getChartData class="btn btn-primary">取得</button>
+                    </div>
+
+                    <div>
+                    <!-- <div class="card-body chart"> -->
+                        <line-chart v-if="loaded" 
+                        :chart-data="datacollection" 
+                        :options=options
+                        :height="400"
+                        />
                     </div>
                 </div>
             </div>
@@ -36,7 +56,9 @@
                             }
                         }]
                     },
-                    responsive:true
+                    responsive:true,
+                    maintainAspectRatio:false,
+                    aspectRatio:3
                 }
             }
         },
@@ -89,7 +111,7 @@
                         self.datacollection.datasets[1].data = water_temp_data
                         self.datacollection.labels= date_data
                         self.loaded = true
-                });
+                    });
             },
             change(){
                 this.loaded = false
@@ -114,6 +136,9 @@
     }
 </script>
 
-<style>
+<style scoped>
+    .chart{
+        height: 100px;
+    }
     
 </style>
